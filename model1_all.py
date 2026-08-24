@@ -82,12 +82,29 @@ def run_commodity(name, cutoff_str):
     return after['gap_pct'].mean()
 
 
+# which commodities were actually tariffed (treated) vs exempt (control)
+treated = [
+    'Basic and semi-finished iron or steel products [312]',
+    'Unwrought iron, steel and ferro-alloys [311]',
+    'Unwrought aluminum and aluminum alloys [321]',
+    'Basic and semi-finished products of aluminum and aluminum alloys [327]',
+    'Lumber and other sawmill products [241]',
+]
+
+excluded = ['Natural gas [142]']
+
 # Run every commodity and collect the results
 results = []
 # iterate thru commodities hashmap
 for name, cutoff_str in commodities.items():
     avg_gap = run_commodity(name, cutoff_str)
-    results.append({'commodity': name, 'avg_gap_pct': round(avg_gap, 1)})
+    if name in excluded:
+        group = 'excluded'
+    elif name in treated:
+        group = 'treated'
+    else:
+        group = 'control'
+    results.append({'commodity': name, 'group': group, 'avg_gap_pct': round(avg_gap, 1)})
 
 # turn the results into a small table, sorted most-hurt to least
 summary = pd.DataFrame(results).sort_values('avg_gap_pct')
@@ -96,3 +113,23 @@ print(summary.to_string(index=False))
 # save it as a real output file
 summary.to_csv('results.csv', index=False)
 print('\nSaved results.csv')
+
+# bar chart of the results, treated vs control colored differently
+import matplotlib.pyplot as plt
+ 
+summary_sorted = summary.sort_values('avg_gap_pct')
+chart_data = summary[summary['group'] != 'excluded']
+colors = ['#eb6834' if g == 'treated' else '#2a78d6' for g in chart_data['group']]
+ 
+# shorten the long commodity names for the chart labels
+short_names = chart_data['commodity'].str.split('[').str[0].str.strip()
+ 
+plt.figure(figsize=(9, 5))
+plt.barh(short_names, chart_data['avg_gap_pct'], color=colors)
+plt.axvline(0, color='gray', linewidth=0.8)
+plt.xlabel('Average gap vs counterfactual (%)')
+plt.title('Tariff impact by commodity (orange = treated, blue = control)')
+plt.tight_layout()
+plt.savefig('results_chart.png')
+plt.show()
+print('Saved results_chart.png')

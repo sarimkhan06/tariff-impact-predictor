@@ -1,10 +1,10 @@
-commodity,avg_gap_pct
-Basic and semi-finished iron or steel products [312],-46.5
-Natural gas [142],-31.7
-"Unwrought iron, steel and ferro-alloys [311]",-12.8
-Basic and semi-finished products of aluminum and aluminum alloys [327],-11.6
-Lumber and other sawmill products [241],-7.3
-Unwrought aluminum and aluminum alloys [321],-6.8
-Crude oil and bitumen [141],-5.8
-"Fish, crustaceans, shellfish and other fishery products [121]",-2.7
-Potash [161],5.9
+commodity,group,avg_gap_pct
+Basic and semi-finished iron or steel products [312],treated,-46.5
+Natural gas [142],excluded,-31.7
+"Unwrought iron, steel and ferro-alloys [311]",treated,-12.8
+Basic and semi-finished products of aluminum and aluminum alloys [327],treated,-11.6
+Lumber and other sawmill products [241],treated,-7.3
+Unwrought aluminum and aluminum alloys [321],treated,-6.8
+Crude oil and bitumen [141],control,-5.8
+"Fish, crustaceans, shellfish and other fishery products [121]",control,-2.7
+Potash [161],control,5.9
