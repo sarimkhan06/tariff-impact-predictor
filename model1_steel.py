@@ -1,7 +1,7 @@
 import pandas as pd
 
 napcs_col = 'North American Product Classification System (NAPCS)'
-steel = 'Potash [161]'
+steel = 'Natural gas [142]'
 
 df = pd.read_csv('filtered_raw.csv')
 df['REF_DATE'] = pd.to_datetime(df['REF_DATE'])
