@@ -16,7 +16,11 @@ commodities = {
     'Crude oil and bitumen [141]': '2025-02-01',
     'Natural gas [142]': '2025-02-01',
     'Potash [161]': '2025-02-01',
-    'Fish, crustaceans, shellfish and other fishery products [121]': '2025-02-01'
+    'Fish, crustaceans, shellfish and other fishery products [121]': '2025-02-01',
+    'Passenger cars and light trucks [411]': '2025-03-01',
+    'Medium and heavy trucks, buses, and other motor vehicles [412]': '2025-03-01',
+    'Motor vehicle engines and motor vehicle parts [413]': '2025-03-01',
+    'Furniture and fixtures [391]': '2025-09-01',
 }
 
 features = ['lag_1', 'lag_12', 'time_index']
@@ -89,6 +93,10 @@ treated = [
     'Unwrought aluminum and aluminum alloys [321]',
     'Basic and semi-finished products of aluminum and aluminum alloys [327]',
     'Lumber and other sawmill products [241]',
+    'Passenger cars and light trucks [411]',
+    'Medium and heavy trucks, buses, and other motor vehicles [412]',
+    'Motor vehicle engines and motor vehicle parts [413]',
+    'Furniture and fixtures [391]'
 ]
 
 excluded = ['Natural gas [142]']

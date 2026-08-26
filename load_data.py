@@ -10,6 +10,10 @@ treated = [
     'Unwrought aluminum and aluminum alloys [321]',
     'Basic and semi-finished products of aluminum and aluminum alloys [327]',
     'Dairy products [173]',
+    'Passenger cars and light trucks [411]',
+    'Medium and heavy trucks, buses, and other motor vehicles [412]',
+    'Motor vehicle engines and motor vehicle parts [413]',
+    'Furniture and fixtures [391]'
 ]
 
 # Confirmed exempt from tariffs

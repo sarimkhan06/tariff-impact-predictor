@@ -2,4 +2,6 @@
 12100163_MetaData.csv
 filtered_raw.csv
 .ipynb_checkpoints/
+hs_filtered.csv
+cimt_exports/
 __pycache__/
