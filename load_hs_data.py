@@ -39,21 +39,22 @@ control_headings = ['2709', '2711', '3104', '0301', '0302', '0303', '0304', '030
 target_headings_hs4 = steel_headings + aluminum_headings + control_headings
 target_codes_hs6 = lumber_hs6 + furniture_hs6
 
-
+# loading the files
 files = glob.glob('cimt_exports/*.csv')
 print(f'Found {len(files)} yearly files')
 
+# reads each year's file, collects them in a list, and glues them into 1 big table
 all_years = []
 for f in files:
     year_df = pd.read_csv(f, encoding='latin1')
     all_years.append(year_df)
-
 df = pd.concat(all_years, ignore_index=True)
 print(f'Combined: {len(df):,} total rows')
 
 # Rename by position - the accented column names get mangled on save/reload
 df.columns = ['yearmonth', 'hs8', 'country', 'state', 'value', 'quantity', 'uom']
 
+# filtering to US exports
 df = df[df['country'] == 'US']
 print(f'After US filter: {len(df):,} rows')
 
@@ -74,11 +75,13 @@ match_hs6['commodity_code'] = match_hs6['heading6']
 combined = pd.concat([match_hs4, match_hs6], ignore_index=True)
 print(f'After heading filter: {len(combined):,} rows')
 
+# shows total export value per code across all years
 by_code = combined.groupby('commodity_code')['value'].sum().sort_values(ascending=False)
 print()
 print('Total export value by code (all years, all months):')
 print(by_code.to_string())
 
+# saves the result for the next script
 combined.to_csv('hs_filtered.csv', index=False)
 print()
 print('Saved hs_filtered.csv')
